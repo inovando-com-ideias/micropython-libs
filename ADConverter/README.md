@@ -54,12 +54,13 @@ while True:
 
 ## Status de testes
 
-| Plataforma | Status                | Versão testada |
-|------------|-----------------------|----------------|
-| ESP32      | ✅ Testado e validado | v0.3          |
-| ESP8266    | ⏳ Pendente          | —              |
-| RP2040     | ⏳ Pendente          | —              |
-| STM32      | ⏳ Pendente          | —              |
+| Plataforma          | Status                | Versão testada |                         |
+|---------------------|-----------------------|----------------|-------------------------|
+| ESP32               | ✅ Testado e validado | v0.3           |                         |
+| ESP8266 ESP-01      | ⛔ Não suportado      | —              | RAM insuficiente (96KB) |
+| ESP8266 - NodeMCU   | ⏳ Pendente           | —              |                         |
+| RP2040              | ⏳ Pendente           | —              |                         |
+| STM32               | ⏳ Pendente           | —              |                         |
 
 ## Herança
 

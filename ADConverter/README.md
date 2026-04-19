@@ -52,6 +52,15 @@ while True:
 - [`examples/basic/basic.py`](examples/basic/basic.py) — leitura simples
 - [`examples/com_tensao/com_tensao.py`](examples/com_tensao/com_tensao.py) — leitura com barra visual
 
+## Status de testes
+
+| Plataforma | Status                | Versão testada |
+|------------|-----------------------|----------------|
+| ESP32      | ✅ Testado e validado | v0.3          |
+| ESP8266    | ⏳ Pendente          | —              |
+| RP2040     | ⏳ Pendente          | —              |
+| STM32      | ⏳ Pendente          | —              |
+
 ## Herança
 
 Esta classe foi projetada para ser extendida:

@@ -20,7 +20,7 @@ class ADConverter:
                  Padrão: tensão de operação da placa (3.3V para todas em MicroPython)
                  Valores válidos por plataforma:
                    ESP32        → 1.0, 1.34, 2.0, 3.3
-                   ESP8266      → 3.3 (fixo, não configurável)
+                   ESP8266      → 1.0 (ESP-01, sem divisor) ou 3.3 (NodeMCU/D1 Mini)
                    RP2040       → 3.3 (fixo, não configurável)
                    STM32        → 3.3 (fixo, não configurável)
 
@@ -49,14 +49,6 @@ class ADConverter:
         PLAT_ESP32   : [1.0, 1.34, 2.0, 3.3],
         PLAT_RP2040  : [3.3],
         PLAT_STM32   : [3.3],
-    }
-
-    # Mapa ESP32: v_ref → constante de atenuação
-    _ESP32_ATTN = {
-        1.0  : ADC.ATTN_0DB,
-        1.34 : ADC.ATTN_2_5DB,
-        2.0  : ADC.ATTN_6DB,
-        3.3  : ADC.ATTN_11DB,
     }
 
     def __init__(self, pino=0, v_ref=None):
@@ -107,7 +99,14 @@ class ADConverter:
 
         elif self._plataforma == self.PLAT_ESP32:
             self._adc = ADC(Pin(self._pino))
-            self._adc.atten(self._ESP32_ATTN[self._v_ref])
+            # Dicionário local — só criado quando rodando em ESP32
+            attn = {
+                1.0  : ADC.ATTN_0DB,
+                1.34 : ADC.ATTN_2_5DB,
+                2.0  : ADC.ATTN_6DB,
+                3.3  : ADC.ATTN_11DB,
+            }
+            self._adc.atten(attn[self._v_ref])
             self._ADC_MAX = 4096
 
         elif self._plataforma == self.PLAT_RP2040:

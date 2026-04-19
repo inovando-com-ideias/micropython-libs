@@ -8,7 +8,6 @@ Detecta automaticamente a plataforma e configura o hardware.
 | Plataforma                 | Chip             | Resolução          |                         |
 |----------------------------|------------------|--------------------|-------------------------|
 | ESP8266 (NodeMCU/D1 Mini)  | ESP8266          | 10 bits (0–1023)   | 3.3V (divisor na placa) |
-| ESP8266 (ESP-01)           | ESP8266          | 10 bits (0–1023)   | 1.0V (sem divisor)      |
 | ESP32 / S3 / C3            | ESP32            | 12 bits (0–4095)   |                         |
 | Raspberry Pi Pico          | RP2040           | 16 bits (0–65535)  |                         |
 | STM32 Blackpill / Nucleo   | STM32            | 12 bits (0–4095)   |                         |
@@ -58,7 +57,7 @@ while True:
 |---------------------|-----------------------|----------------|-------------------------|
 | ESP32               | ✅ Testado e validado | v0.3           |                         |
 | ESP8266 ESP-01      | ⛔ Não suportado      | —              | RAM insuficiente (96KB) |
-| ESP8266 - NodeMCU   | ⏳ Pendente           | —              |                         |
+| ESP8266 - NodeMCU   | ✅ Testado e validado | v0.3           |                         |
 | RP2040              | ⏳ Pendente           | —              |                         |
 | STM32               | ⏳ Pendente           | —              |                         |
 

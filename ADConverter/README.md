@@ -5,12 +5,13 @@ Detecta automaticamente a plataforma e configura o hardware.
 
 ## Plataformas suportadas
 
-| Plataforma               | Chip    | Resolução         |
-|--------------------------|---------|-------------------|
-| ESP8266                  | ESP8266 | 10 bits (0–1023)  |
-| ESP32 / S3 / C3          | ESP32   | 12 bits (0–4095)  |
-| Raspberry Pi Pico        | RP2040  | 16 bits (0–65535) |
-| STM32 Blackpill / Nucleo | STM32   | 12 bits (0–4095)  |
+| Plataforma                 | Chip             | Resolução          |                         |
+|----------------------------|------------------|--------------------|-------------------------|
+| ESP8266 (NodeMCU/D1 Mini)  | ESP8266          | 10 bits (0–1023)   | 3.3V (divisor na placa) |
+| ESP8266 (ESP-01)           | ESP8266          | 10 bits (0–1023)   | 1.0V (sem divisor)      |
+| ESP32 / S3 / C3            | ESP32            | 12 bits (0–4095)   |                         |
+| Raspberry Pi Pico          | RP2040           | 16 bits (0–65535)  |                         |
+| STM32 Blackpill / Nucleo   | STM32            | 12 bits (0–4095)   |                         |
 
 ## Instalação
 
@@ -23,8 +24,10 @@ para uma pasta chamada `ADConverter/`.
 from ADConverter.adc import ADConverter
 import time
 
-adc = ADConverter(pino=34)   # ESP32
-# adc = ADConverter()        # ESP8266 (pino ignorado)
+adc = ADConverter(pino=34)     # ESP32
+# adc = ADConverter()          # ESP8266 (pino ignorado)
+# adc = ADConverter(v_ref=3.3) # ESP8266 NodeMCU/D1 Mini — com divisor de tensão na placa
+# adc = ADConverter(v_ref=1.0) # ESP8266 ESP-01 — sem divisor de tensão
 # adc = ADConverter(pino=26) # Pico
 
 while True:

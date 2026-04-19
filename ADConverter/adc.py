@@ -45,7 +45,7 @@ class ADConverter:
 
     # Valores válidos de v_ref por plataforma
     _VREF_VALIDOS = {
-        PLAT_ESP8266 : [3.3],
+        PLAT_ESP8266 : [1.0, 3.3],
         PLAT_ESP32   : [1.0, 1.34, 2.0, 3.3],
         PLAT_RP2040  : [3.3],
         PLAT_STM32   : [3.3],

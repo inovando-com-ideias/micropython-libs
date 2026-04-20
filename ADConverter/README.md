@@ -58,7 +58,7 @@ while True:
 | ESP32               | ✅ Testado e validado | v0.3           |                         |
 | ESP8266 ESP-01      | ⛔ Não suportado      | —              | RAM insuficiente (96KB) |
 | ESP8266 - NodeMCU   | ✅ Testado e validado | v0.3           |                         |
-| RP2040              | ⏳ Pendente           | —              |                         |
+| RP2040              | ✅ Testado e validado | v0.3           |                         |
 | STM32               | ⏳ Pendente           | —              |                         |
 
 ## Herança

@@ -5,7 +5,7 @@
 from ADConverter.adc import ADConverter
 import time
 
-adc = ADConverter()
+adc = ADConverter(pino=26)
 
 print(f"Plataforma : {adc.plataforma}")
 print(f"Resolução  : {adc.resolucao} steps")

@@ -32,7 +32,7 @@ class ADConverter:
     # Identificadores de plataforma
     PLAT_ESP8266 = 'esp8266'
     PLAT_ESP32   = 'esp32'
-    PLAT_RP2040  = 'rp2040'
+    PLAT_RP2040  = 'rp2'
     PLAT_STM32   = 'pyboard'
 
     # Padrão de v_ref por plataforma (tensão de operação)
@@ -55,6 +55,7 @@ class ADConverter:
         self._plataforma = os.uname()[0].lower()
         self._pino       = pino
         self._adc        = None
+        self._ler_fn     = None  # função de leitura — definida em _configurar()        
         self._ADC_MAX    = 4096
         self._ADC_MIN    = 0
 
@@ -96,6 +97,7 @@ class ADConverter:
         if self._plataforma == self.PLAT_ESP8266:
             self._adc     = ADC(0)
             self._ADC_MAX = 1024
+            self._ler_fn = self._adc.read
 
         elif self._plataforma == self.PLAT_ESP32:
             self._adc = ADC(Pin(self._pino))
@@ -108,14 +110,17 @@ class ADConverter:
             }
             self._adc.atten(attn[self._v_ref])
             self._ADC_MAX = 4096
+            self._ler_fn  = self._adc.read
 
         elif self._plataforma == self.PLAT_RP2040:
             self._adc     = ADC(self._pino)
             self._ADC_MAX = 65535
+            self._ler_fn  = self._adc.read_u16   # RP2040 usa read_u16
 
         elif self._plataforma == self.PLAT_STM32:
             self._adc     = ADC(Pin(self._pino))
             self._ADC_MAX = 4096
+            self._ler_fn  = self._adc.read
 
     # ------------------------------------------------------------------
     # Leituras
@@ -123,7 +128,7 @@ class ADConverter:
 
     def ler(self):
         """Retorna o valor bruto do ADC."""
-        return self._adc.read()
+        return self._ler_fn()
 
     def ler_normalizado(self):
         """Retorna valor entre 0.0 e 1.0, independente da plataforma."""
